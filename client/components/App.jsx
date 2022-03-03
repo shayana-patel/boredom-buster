@@ -4,8 +4,11 @@ import Generator from './Generator'
 const App = () => {
   return (
     <>
-      <h1>The Boredem Buster App</h1>
-      <Generator />
+      <div id="main-app-container">
+        <h1>The Boredem Buster</h1>
+        <p>Are you bored and can't think of anything to do? Try out the random activity generator below!</p>
+        <Generator />
+      </div>
     </>
   )
 }

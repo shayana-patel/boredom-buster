@@ -47,7 +47,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "The Boredem Buster App"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Generator__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    id: "main-app-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "The Boredem Buster"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Are you bored and can't think of anything to do? Try out the random activity generator below!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Generator__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
@@ -88,32 +90,58 @@ var Generator = function Generator() {
       activitySuggestion = _useState2[0],
       setActivitySuggestion = _useState2[1];
 
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      activityType = _useState4[0],
+      setActivityType = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      activityPrice = _useState6[0],
+      setActivityPrice = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState8 = _slicedToArray(_useState7, 2),
+      activityParticipants = _useState8[0],
+      setActivityParticipants = _useState8[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     (0,_api__WEBPACK_IMPORTED_MODULE_1__.getActivity)().then(function (res) {
+      // console.log('this is the response body', res)
       setActivitySuggestion(res.activity);
+      setActivityType(res.type);
+      setActivityPrice(res.price);
+      setActivityParticipants(res.participants);
       return null;
     })["catch"](function (err) {
       console.err(err.message);
     });
   }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    newActivity();
+  }, []);
 
   var newActivity = function newActivity() {
     (0,_api__WEBPACK_IMPORTED_MODULE_1__.getActivity)().then(function (res) {
       setActivitySuggestion(res.activity);
+      setActivityType(res.type);
+      setActivityPrice(res.price);
+      setActivityParticipants(res.participants);
       return null;
     })["catch"](function (err) {
       console.error(err.message);
     });
   };
 
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    newActivity();
-  }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "main-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "activity-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, activitySuggestion)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, activitySuggestion), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "activity-details"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Type: ", activityType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Price: ", activityPrice), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Particiants: ", activityParticipants))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "button-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     onClick: newActivity,
     className: "new-activity-button"
   }, "New Activity"))));
